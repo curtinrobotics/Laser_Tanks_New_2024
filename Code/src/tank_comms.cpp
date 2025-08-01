@@ -22,22 +22,26 @@ void TankCommsInit(uint8_t* tank_address) {
     memcpy(info.peer_addr, target_address, 6);
     esp_now_add_peer(&info);
 
+
+    // Serial.println(target_address);
+
 }
 
 //left_speed: [-127, 127] (Fastest going backwards, Fastest going forwards)
 //right_speed: [-127, 127] (Fastest going backwards, Fastest going forwards)
 void SetMotorSpeed(int8_t left_speed, int8_t right_speed) {
 
-    uint8_t absolute_left_speed = abs(left_speed);
-    uint8_t absolute_right_speed = abs(right_speed);
+    // uint8_t absolute_left_speed = abs(left_speed);
+    // uint8_t absolute_right_speed = abs(right_speed);
+    //
+    // uint8_t left_direction = signbit(left_speed);
+    // uint8_t right_direction = signbit(right_speed);
 
-    uint8_t left_direction = signbit(left_speed);
-    uint8_t right_direction = signbit(right_speed);
+    uint8_t left_speed_argument  = left_speed;
+    uint8_t right_speed_argument = right_speed;
 
-
-
-    uint8_t left_speed_argument = (absolute_left_speed >> 1) + 0x40 * left_direction;
-    uint8_t right_speed_argument = (absolute_right_speed >> 1) + 0x40 * right_direction;
+    // uint8_t left_speed_argument = (absolute_left_speed >> 1) + 0x40 * left_direction;
+    // uint8_t right_speed_argument = (absolute_right_speed >> 1) + 0x40 * right_direction;
 
 
     uint8_t left_motor_command[] = {0x01, left_speed_argument};
